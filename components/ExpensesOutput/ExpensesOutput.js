@@ -5,10 +5,10 @@ import ExpensesList from "./ExpensesList"
 
 
 
-export default function ExpensesOutput(){
+export default function ExpensesOutput({expenses, expensesPeriod}){
     return(
         <View>
-           <ExpensesSummary/>
+           <ExpensesSummary expenses={expenses} periodNAme={expensesPeriod}/>
          <ExpensesList/>
             <FlatList/>
         </View>
