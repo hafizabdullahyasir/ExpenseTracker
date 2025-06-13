@@ -26,11 +26,13 @@ container:{
     alignItems: 'center'
 },
 period: {
+    padding: 8,
 fontSize: 12,
 color: GlobalStyles.colors.primary400
 
 },
 sum:{
+    padding: 8,
     fontSize: 16,
     fontWeight: 'bold',
     color: GlobalStyles.colors.primary500
