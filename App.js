@@ -24,7 +24,7 @@ return <BottomTabs.Navigator screenOptions={({navigation})=>({
   headerTintColor: 'white',
   tabBarStyle: {backgroundColor: GlobalStyles.colors.primary500},
   tabBarActiveTintColor: GlobalStyles.colors.accent500, 
-  headerRight: ({tintColor}) => <IconButton icon='add' size={24} color={tintColor} onPress={() => {navigation.navigate('ManageExpense')}}/>
+  headerRight: ({tintColor}) => <IconButton icon='add' size={24} color={tintColor} onPress={() => {navigation.navigate('ManageExpense') }}/>
 })}>
 <BottomTabs.Screen name='RecentExpenses' component={RecentExpenses} options={{
   title: 'Recent Expense',
@@ -55,9 +55,12 @@ export default function App() {
      <>
      <StatusBar style="auto" />
      <NavigationContainer>
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+      headerStyle: {backgroundColor: GlobalStyles.colors.primary500},
+      headerTintColor: 'white',
+    }}>
       <Stack.Screen name='ExpensesOverview'options={{headerShown:  false}} component={ExpensesOverview}/>
-    <Stack.Screen name='ManageExpense' component={ManageExpense}/>
+    <Stack.Screen name='ManageExpense' component={ManageExpense} options={{presentation: 'modal'}}/>
     
 
 
