@@ -5,6 +5,7 @@ import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
 import { useContext } from "react";
 import ExpensesContext from "../store/expenses-context";
+import ExpensesForm from "../components/ManageExpense/ExpensesForm";
 
 
 
@@ -16,6 +17,10 @@ const expensesCtx = useContext(ExpensesContext);
 
 const editedExpenseId = route.params?.expenseId;
 const isEditing = !!editedExpenseId;
+
+const selectedExpense = expensesCtx.expenses.find(
+    (expense) => expense.id === editedExpenseId
+);
 
 useLayoutEffect(()=>{
      navigation.setOptions({
@@ -33,23 +38,22 @@ function cancelHandler(){
     navigation.goBack();
 }
 
-function confirmHandler(){
+function confirmHandler(expenseData){
     if(isEditing){
-        expensesCtx.updateExpense(editedExpenseId, {
-            ...route.params,
-        })
+        expensesCtx.updateExpense(editedExpenseId, expenseData)
     }else{
-        expensesCtx.addExpense({})
+        expensesCtx.addExpense(expenseData)
     }
     navigation.goBack();
 }
 
     return (
         <View style={styles.container}>
-        <View style={styles.buttons}>
+        <ExpensesForm onCancel={cancelHandler} onSubmit={confirmHandler} defaultValues={selectedExpense} submitButtonLabel={isEditing ? 'Update' : 'Add'}/>
+        {/* <View style={styles.buttons}>
             <Button mode='flat' onPress={cancelHandler} style={styles.button}>Cancel</Button>    
             <Button mode='flat' onPress={confirmHandler} style={styles.button}>{isEditing ? 'Update' : 'Add'}</Button>
-        </View>
+        </View> */}
 
 
           {isEditing && (
@@ -66,15 +70,7 @@ const styles = StyleSheet.create({
         padding: 24,
         backgroundColor: GlobalStyles.colors.primary800
     },
-    buttons:{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    button:{
-        minWidth: 120,
-        marginHorizontal: 8
-    },
+   
     deleteContainer:{
         marginTop: 16,
         paddingTop: 8,
