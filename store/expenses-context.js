@@ -24,8 +24,8 @@ const DUMMY_EXPENSES = [
     },
     {
         id: 'e4',
-        description: 'A pair of Women ',
-        amount: 100.99,
+        description: 'A pair of bitcoin ',
+        amount: 10500,
         date: new Date('2024-12-19')
     },
     {
@@ -36,7 +36,7 @@ const DUMMY_EXPENSES = [
     },
     {
         id: 'e6',
-        description: 'A pair of Hajishb',
+        description: 'A pair of ton',
         amount: 9.99,
         date: new Date('2022-12-19')
     },
